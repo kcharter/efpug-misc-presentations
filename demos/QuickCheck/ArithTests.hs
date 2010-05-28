@@ -3,6 +3,7 @@ module ArithTests where
 import Test.QuickCheck
 
 import Arith
+import ArithEval1
 import ArithQuickCheck
 
 runTests :: IO ()
