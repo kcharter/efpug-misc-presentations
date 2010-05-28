@@ -1,4 +1,4 @@
-module ArithTests where
+module ArithTests1 where
 
 import Test.QuickCheck
 
