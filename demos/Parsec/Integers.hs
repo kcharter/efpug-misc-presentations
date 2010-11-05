@@ -8,15 +8,15 @@ module Integers (parseInteger) where
 import Control.Monad (liftM)
 import Text.ParserCombinators.Parsec
 
+import Util
+
+-- | A utility function that returns either an error message or an integer.
 parseInteger :: String -> Either String Integer
 parseInteger =
   either (Left . show) Right . runParser (topLevel pInteger) () ""
   
+-- | The main integer parser itself. Note that since parsers are
+-- monadic, we can use 'liftM'.
 pInteger :: CharParser s Integer
 pInteger = read `liftM` lexeme (many1 digit)
 
-topLevel :: CharParser s a -> CharParser s a
-topLevel p = do spaces; r <- p; eof; return r
-
-lexeme :: CharParser s a -> CharParser s a
-lexeme p = do r <- p; spaces; return r
