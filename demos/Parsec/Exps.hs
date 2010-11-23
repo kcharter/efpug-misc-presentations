@@ -17,13 +17,13 @@ parseExp =
 pExp :: CharParser s Integer
 pExp = pExp2
 
--- | Multiplication and division.
+-- | Addition and subtraction.
 pExp2 :: CharParser s Integer
 pExp2 = pExp1 `applyOps` many (addSome <|> subSome)
   where addSome = opBy opPlus (+) pExp1
         subSome = opBy opMinus (-) pExp1
         
--- | Addition and subtraction.
+-- | Multiplication and division.
 pExp1 :: CharParser s Integer
 pExp1 = pExp0 `applyOps` many (mulBy <|> divBy)
   where mulBy = opBy opStar (*) pExp0
